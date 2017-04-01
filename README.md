@@ -14,6 +14,9 @@ File created because of desire to find products of larger cycles. Please use for
 	* Self.identity
 		* Identity object for the use of the user. Just in case.
 
+* ## Verify Function
+    * Takes the self.__biject object and tests for duplicates and number of elements to prevent poor input.
+
 * ## Printing Options
 * By default, printing a bijection object (print(sigma)) will output the disjoint cycles which describe it. 
 	* Default: Cycle format

@@ -129,7 +129,7 @@ class Bijection():
 
 	
 	#General Functions
-	def __verify(self):
+	def verify(self):
 		block = set()
 		for i in self.__biject:
 			if i > 0 and i <= self.__group:
