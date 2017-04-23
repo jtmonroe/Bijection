@@ -105,7 +105,12 @@ class Bijection():
 	
 	def group(self):
 		return self.__group
-	
+
+	def __gcd(self, a,b):
+		while b:
+			a , b = b , a%b
+		return a
+
 	def order(self):
 		total = []                          #REFERENCE TO __str__ for explanation
 		unvisited = set()
@@ -119,14 +124,14 @@ class Bijection():
 				unvisited.remove(k)
 				k = self.__biject[k-1]
 			total.append(cycle)	
-		orders = set()
+		orders = []
 		for cycle in total:               #Gather the orders of all cycles
-			orders.add(len(cycle))        #Utilize the set to only have 1 of every entry
-		k = 1
-		for i in orders: 
-			k = k*i                       #Find the lcm of all of the orders of the cycles 
-		return k                          #Return the overall order
-
+			orders.append(len(cycle))        
+		lcm = orders[0]
+		for i in orders:
+			lcm = lcm*i//self.__gcd(lcm, i)
+		return int(lcm)
+		
 	
 	#General Functions
 	def verify(self):
@@ -138,3 +143,7 @@ class Bijection():
 			return True
 		else:
 			return False
+
+if __name__ == '__main__':
+	sigma = Bijection(12, (1,2), (3,4,5), (6,7,8,9))
+	print(sigma.order())
