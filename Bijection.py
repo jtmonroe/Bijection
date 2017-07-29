@@ -129,7 +129,7 @@ class Bijection():
 			orders.append(len(cycle))        
 		lcm = orders[0]
 		for i in orders:
-			lcm = lcm*i//self.__gcd(lcm, i)
+			lcm = lcm*i//self.__gcd(lcm, i) #Taken from the old python 2 code
 		return int(lcm)
 		
 	
