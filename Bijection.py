@@ -45,7 +45,7 @@ class Bijection():
     def __str__(self): #THIS CODE IS VITAL TO UNDERSTAND -- APPEARS THROUGHOUT
         total = []                              #Make array to place cycles within
         unvisited = set()                       #set to indicate unvisited terms
-        for i in range(1,self.__group+1):       #fill the set with needed terms
+        for i in range(1, self.__group+1):       #fill the set with needed terms
             unvisited.add(i)
         while len(unvisited) > 0:               #build the cycles by removing visited terms from unvisited
             k = min(unvisited)
@@ -65,8 +65,8 @@ class Bijection():
         if spec == "biject":                    #Allow for bijections to be printed
             return self.__print_biject()
         return str(self).__format__(spec)
-    
-    #Operations 
+
+    #Operations
     def __mul__(self, other):
         if self.__group != other.__group:       #In case of stupid
             pass
@@ -74,7 +74,7 @@ class Bijection():
         for i in range(len(self.__biject)):     #Look through both objects to create new one -- Arrays are amazing
             sigma.__biject[i] = other.__biject[(self.__biject[i] - 1 + self.__group)%self.__group]
         return sigma            
-    
+
     def __pow__(self, n):
         sigma = Bijection(self.__group)
         if n >= 0:                              #Restrict to positive powers
