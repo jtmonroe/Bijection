@@ -45,7 +45,7 @@ class Bijection():
     def __str__(self): #THIS CODE IS VITAL TO UNDERSTAND -- APPEARS THROUGHOUT
         total = []                              #Make array to place cycles within
         unvisited = set()                       #set to indicate unvisited terms
-        for i in range(1, self.__group+1):       #fill the set with needed terms
+        for i in range(1, self.__group+1):      #fill the set with needed terms
             unvisited.add(i)
         while len(unvisited) > 0:               #build the cycles by removing visited terms from unvisited
             k = min(unvisited)
@@ -72,8 +72,8 @@ class Bijection():
             pass
         sigma = Bijection(self.__group)         #New bijection
         for i in range(len(self.__biject)):     #Look through both objects to create new one -- Arrays are amazing
-            sigma.__biject[i] = other.__biject[(self.__biject[i] - 1 + self.__group)%self.__group]
-        return sigma            
+            sigma.__biject[i] = other.__biject[(self.__biject[i] - 1 + self.__group) % self.__group]
+        return sigma
 
     def __pow__(self, n):
         sigma = Bijection(self.__group)
@@ -108,7 +108,8 @@ class Bijection():
     def group(self):
         return self.__group
 
-    def __gcd(self, a, b):
+    @classmethod
+    def __gcd(cls, a, b):
         while b:
             a, b = b, a % b
         return a
@@ -131,7 +132,7 @@ class Bijection():
             orders.append(len(cycle))
         lcm = orders[0]
         for i in orders:
-            lcm = lcm*i//self.__gcd(lcm, i) #Taken from the old python 2 code
+            lcm = lcm*i//Bijection.__gcd(lcm, i) #Taken from the old python 2 code
         return int(lcm)
 
     #General Functions
